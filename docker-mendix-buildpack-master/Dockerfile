@@ -52,6 +52,7 @@ COPY $BUILD_PATH /opt/mendix/build
 RUN ls
 RUN ls opt/mendix/buildpack
 
+RUN ls home/vsts/work/1/s
  
 # Install the buildpack Python dependencies
 RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
