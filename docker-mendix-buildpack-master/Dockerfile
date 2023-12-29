@@ -53,10 +53,6 @@ RUN ls
 RUN ls opt/mendix/buildpack
 
  
-
-
-has context menu
-
 # Install the buildpack Python dependencies
 RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
 
