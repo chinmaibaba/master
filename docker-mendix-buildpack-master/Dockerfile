@@ -50,9 +50,10 @@ COPY scripts/compilation scripts/git /opt/mendix/buildpack/
 # Copy project model/sources
 COPY $BUILD_PATH /opt/mendix/build
 RUN ls
-ls /opt/mendix/buildpack
+RUN ls /opt/mendix/buildpack
+
  
-ls /home/vsts/work/1/s/
+RUN ls /home/vsts/work/1/s/
 #COPY /home/vsts/work/1/s/master-main/docker-mendix-buildpack-master/scripts/compilation /home/vsts/work/1/s/master-main/docker-mendix-buildpack-master/scripts/git /opt/mendix/buildpack/
  
  
