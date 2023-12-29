@@ -49,6 +49,7 @@ COPY scripts/compilation scripts/git /opt/mendix/buildpack/
 
 # Copy project model/sources
 COPY $BUILD_PATH /opt/mendix/build
+RUN ls
 
 # Install the buildpack Python dependencies
 RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
