@@ -41,8 +41,8 @@ RUN mkdir -p /opt/mendix/buildpack /opt/mendix/build &&\
     curl -fsSL ${CF_BUILDPACK_URL} -o /tmp/cf-mendix-buildpack.zip && \
     python3 -m zipfile -e /tmp/cf-mendix-buildpack.zip /opt/mendix/buildpack/ &&\
     rm /tmp/cf-mendix-buildpack.zip &&\
-    chown -R ${USER_UID}:0 /opt/mendix &&\
-    chmod -R g=u /opt/mendix
+    chown -R 777 ${USER_UID}:0 /opt/mendix &&\
+    chmod -R 777 g=u /opt/mendix
 
 # Copy python scripts which execute the buildpack (exporting the VCAP variables)
 COPY scripts/compilation scripts/git /opt/mendix/buildpack/
@@ -54,13 +54,7 @@ RUN ls opt/mendix/buildpack
 RUN ls /home/vsts/work/1/s/
  
 # Install the buildpack Python dependencies
-# RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
-RUN ["chmod", "+rx", "/opt/mendix/buildpack/bin/bootstrap-python"] \ 
-    ["chmod", "+rx", "/opt/mendix/buildpack/bin/bootstrap-python"] \
-    ["chmod", "+rx", "/opt/mendix/buildpack"] \ 
-    ["chmod", "+rx", "/tmp/buildcache"]
-
-
+# RUN chmod +rx 777 /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
 
 # Add the buildpack modules
 ENV PYTHONPATH "$PYTHONPATH:/opt/mendix/buildpack/lib/:/opt/mendix/buildpack/:/opt/mendix/buildpack/lib/python3.6/site-packages/"
@@ -78,13 +72,13 @@ ENV NGINX_CUSTOM_BIN_PATH=/usr/sbin/nginx
 # 7. Update ownership of /opt/mendix so that the app can run as a non-root user
 # 8. Update permissions of /opt/mendix so that the app can run as a non-root user
 RUN mkdir -p /tmp/buildcache /var/mendix/build /var/mendix/build/.local &&\
-    chmod +rx /opt/mendix/buildpack/compilation /opt/mendix/buildpack/git /opt/mendix/buildpack/buildpack/stage.py &&\
+    chmod +rx 777 /opt/mendix/buildpack/compilation /opt/mendix/buildpack/git /opt/mendix/buildpack/buildpack/stage.py &&\
     cd /opt/mendix/buildpack &&\
     ./compilation /opt/mendix/build /tmp/buildcache &&\
     rm -fr /tmp/buildcache /tmp/javasdk /tmp/opt /tmp/downloads /opt/mendix/buildpack/compilation /opt/mendix/buildpack/git &&\
     ln -s /opt/mendix/.java /opt/mendix/build &&\
-    chown -R ${USER_UID}:0 /opt/mendix /var/mendix &&\
-    chmod -R g=u /opt/mendix /var/mendix
+    chown -R 777 ${USER_UID}:0 /opt/mendix /var/mendix &&\
+    chmod -R 777 g=u /opt/mendix /var/mendix
 
 FROM ${ROOTFS_IMAGE}
 LABEL Author="Mendix Digital Ecosystems"
