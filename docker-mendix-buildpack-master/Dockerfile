@@ -56,10 +56,10 @@ RUN ls opt/mendix/buildpack
 # Install the buildpack Python dependencies
 # RUN chmod +rx 777 /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
 RUN mkdir -p /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
-RUN chmod +rx 777 /opt/mendix/buildpack/bin/bootstrap-python
-RUN chmod +rx 777 /opt/mendix/buildpack/bin/bootstrap-python
-RUN chmod +rx 777 /opt/mendix/buildpack
-RUN chmod +rx 777 /tmp/buildcache
+RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python
+RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python
+RUN chmod +rx /opt/mendix/buildpack
+RUN chmod +rx /tmp/buildcache
 
 # Add the buildpack modules
 ENV PYTHONPATH "$PYTHONPATH:/opt/mendix/buildpack/lib/:/opt/mendix/buildpack/:/opt/mendix/buildpack/lib/python3.6/site-packages/"
