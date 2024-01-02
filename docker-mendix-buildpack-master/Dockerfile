@@ -41,8 +41,8 @@ RUN mkdir -p /opt/mendix/buildpack /opt/mendix/build &&\
     curl -fsSL ${CF_BUILDPACK_URL} -o /tmp/cf-mendix-buildpack.zip && \
     python3 -m zipfile -e /tmp/cf-mendix-buildpack.zip /opt/mendix/buildpack/ &&\
     rm /tmp/cf-mendix-buildpack.zip &&\
-    chown -R 777 ${USER_UID}:0 /opt/mendix &&\
-    chmod -R 777 g=u /opt/mendix
+    chown -R ${USER_UID}:0 /opt/mendix &&\
+    chmod -R g=u /opt/mendix
 
 # Copy python scripts which execute the buildpack (exporting the VCAP variables)
 COPY scripts/compilation scripts/git /opt/mendix/buildpack/
@@ -54,7 +54,7 @@ RUN ls opt/mendix/buildpack
 RUN ls /home/vsts/work/1/s/
  
 # Install the buildpack Python dependencies
-# RUN chmod +rx 777 /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
+ RUN chmod +rx 777 /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
 
 # Add the buildpack modules
 ENV PYTHONPATH "$PYTHONPATH:/opt/mendix/buildpack/lib/:/opt/mendix/buildpack/:/opt/mendix/buildpack/lib/python3.6/site-packages/"
