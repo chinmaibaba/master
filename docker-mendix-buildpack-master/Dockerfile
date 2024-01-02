@@ -62,7 +62,11 @@ RUN chmod +rx /opt/mendix/buildpack
 RUN chmod +rx /tmp/buildcache
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack/stage.py
+
+RUN /opt/mendix/buildpack
+RUN ls
 RUN cd /opt/mendix/buildpack/buildpack
+RUN ls
 
 
 # Add the buildpack modules
