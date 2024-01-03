@@ -49,9 +49,9 @@ COPY scripts/compilation scripts/git /opt/mendix/buildpack/
 
 # Copy project model/sources
 COPY $BUILD_PATH /opt/mendix/build
-RUN ls
-RUN ls opt/mendix/buildpack
-RUN ls opt/mendix/cf-mendix-buildpack-main
+RUN ls -l
+RUN ls -l opt/mendix/buildpack
+RUN ls -l opt/mendix/cf-mendix-buildpack-main
 
 
  
