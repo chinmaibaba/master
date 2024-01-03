@@ -40,7 +40,7 @@ RUN mkdir -p /opt/mendix/buildpack /opt/mendix/build &&\
     echo "Downloading CF Buildpack from ${CF_BUILDPACK_URL}" &&\
     curl -fsSL ${CF_BUILDPACK_URL} -o /tmp/cf-mendix-buildpack.zip && \
     python3 -m zipfile -e /tmp/cf-mendix-buildpack.zip /opt/mendix/buildpack/ &&\
- #   rm /tmp/cf-mendix-buildpack.zip &&\
+    rm /tmp/cf-mendix-buildpack.zip &&\
     chown -R ${USER_UID}:0 /opt/mendix &&\
     chmod -R g=u /opt/mendix
 
@@ -50,8 +50,6 @@ COPY scripts/compilation scripts/git /opt/mendix/buildpack/
 # Copy project model/sources
 COPY $BUILD_PATH /opt/mendix/build
 
-
-COPY /tmp/cf-mendix-buildpack.zip /opt/mendix/build
 RUN ls -l
 RUN ls -l opt/mendix/buildpack
 
