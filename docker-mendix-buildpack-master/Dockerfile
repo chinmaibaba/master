@@ -52,6 +52,7 @@ COPY $BUILD_PATH /opt/mendix/build
 
 RUN ls -l
 RUN ls -l opt/mendix/buildpack
+RUN ls -l opt/mendix/buildpack/cf-mendix-buildpack-main
 
 
 
