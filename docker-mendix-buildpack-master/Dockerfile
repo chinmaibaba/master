@@ -51,7 +51,7 @@ COPY scripts/compilation scripts/git /opt/mendix/buildpack/
 COPY $BUILD_PATH /opt/mendix/build
 RUN ls -l
 RUN ls -l opt/mendix/buildpack
-RUN ls -l opt/mendix/cf-mendix-buildpack-main
+
 
 
  
@@ -66,7 +66,7 @@ RUN chmod +rx /opt/mendix/buildpack/buildpack
 RUN chmod +rx /tmp/buildcache
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack/stage.py
-RUN ls opt/mendix/buildpack/buildpack
+RUN ls -l opt/mendix/buildpack/buildpack
 COPY /. /opt/mendix/buildpack/
 
 # Add the buildpack modules
