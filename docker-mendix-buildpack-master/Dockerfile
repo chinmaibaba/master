@@ -55,12 +55,11 @@ RUN ls opt/mendix/buildpack
  
 # Install the buildpack Python dependencies
 # RUN chmod +rx  /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
-RUN mkdir -p /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
+RUN mkdir -p /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /opt/mendix/buildpack/buildpack /tmp/buildcache
 RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python
 RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python
 RUN chmod +rx /opt/mendix/buildpack
 RUN chmod +rx /opt/mendix/buildpack/buildpack
-RUN chmod +rx /opt/mendix/buildpack/buildpack/stage.py
 
 RUN chmod +rx /tmp/buildcache
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack
