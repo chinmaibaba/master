@@ -51,6 +51,8 @@ COPY scripts/compilation scripts/git /opt/mendix/buildpack/
 COPY $BUILD_PATH /opt/mendix/build
 RUN ls
 RUN ls opt/mendix/buildpack
+RUN ls opt/mendix/cf-mendix-buildpack-main
+
 
  
 # Install the buildpack Python dependencies
@@ -65,7 +67,7 @@ RUN chmod +rx /tmp/buildcache
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack/stage.py
 RUN ls opt/mendix/buildpack/buildpack
-COPY . /opt/mendix/buildpack/
+COPY /. /opt/mendix/buildpack/
 
 # Add the buildpack modules
 ENV PYTHONPATH "$PYTHONPATH:/opt/mendix/buildpack/lib/:/opt/mendix/buildpack/:/opt/mendix/buildpack/lib/python3.6/site-packages/"
