@@ -69,7 +69,7 @@ RUN chmod +rx /tmp/buildcache
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack/stage.py
 RUN ls -l opt/mendix/buildpack/buildpack
-cd /opt/mendix/buildpack/cf-mendix-buildpack-main
+RUN cd /opt/mendix/buildpack/cf-mendix-buildpack-main
 RUN ls -l
 COPY /opt/mendix/buildpack/cf-mendix-buildpack-main/* /opt/mendix/buildpack/
 RUN ls -l opt/mendix/buildpack
