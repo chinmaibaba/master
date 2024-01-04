@@ -73,7 +73,8 @@ RUN chmod +rx /tmp/buildcache
 RUN ls -l opt/mendix/buildpack/buildpack
 RUN cd /opt/mendix/buildpack/cf-mendix-buildpack-main
 RUN ls -l
-COPY opt/mendix/buildpack/cf-mendix-buildpack-main/* /opt/mendix/buildpack/
+WORKDIR opt/mendix/buildpack/
+ADD opt/mendix/buildpack/cf-mendix-buildpack-main /opt/mendix/buildpack/
 RUN ls -l opt/mendix/buildpack
 
 # Add the buildpack modules
