@@ -16,8 +16,8 @@ ARG DD_API_KEY
 ARG CF_BUILDPACK=v5.0.13
 # CF buildpack download URL
 #ARG CF_BUILDPACK_URL=https://github.com/mendix/cf-mendix-buildpack/releases/download/${CF_BUILDPACK}/cf-mendix-buildpack.zip
-#ARG CF_BUILDPACK_URL=https://github.com/chinmaibaba/cf-mendix-buildpack/archive/refs/heads/main.zip
-ARG CF_BUILDPACK_URL=https://github.com/chinmaibaba/buildpack/archive/refs/heads/main.zip
+ARG CF_BUILDPACK_URL=https://github.com/chinmaibaba/cf-mendix-buildpack/archive/refs/heads/main.zip
+#ARG CF_BUILDPACK_URL=https://github.com/chinmaibaba/buildpack/archive/refs/heads/main.zip
 
 
 # Exclude the logfilter binary by default
