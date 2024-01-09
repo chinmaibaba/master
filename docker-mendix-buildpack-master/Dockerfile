@@ -15,8 +15,8 @@ ARG DD_API_KEY
 # CF buildpack version
 ARG CF_BUILDPACK=v5.0.13
 # CF buildpack download URL
-#ARG CF_BUILDPACK_URL=https://github.com/mendix/cf-mendix-buildpack/releases/download/${CF_BUILDPACK}/cf-mendix-buildpack.zip
-ARG CF_BUILDPACK_URL=https://github.com/chinmaibaba/cf-mendix-buildpack/archive/refs/heads/main.zip
+ARG CF_BUILDPACK_URL=https://github.com/mendix/cf-mendix-buildpack/releases/download/${CF_BUILDPACK}/cf-mendix-buildpack.zip
+#ARG CF_BUILDPACK_URL=https://github.com/chinmaibaba/cf-mendix-buildpack/archive/refs/heads/main.zip
 #ARG CF_BUILDPACK_URL=https://github.com/chinmaibaba/buildpack/archive/refs/heads/main.zip
 
 
@@ -73,8 +73,8 @@ RUN chmod +rx /tmp/buildcache
 RUN ls -l opt/mendix/buildpack/buildpack
 RUN cd /opt/mendix/buildpack/cf-mendix-buildpack-main
 RUN ls -l
-WORKDIR /opt/mendix/buildpack
-COPY opt/mendix/buildpack/cf-mendix-buildpack-main/* /opt/mendix/buildpack/
+#WORKDIR /opt/mendix/buildpack
+#COPY opt/mendix/buildpack/cf-mendix-buildpack-main/* /opt/mendix/buildpack/
 RUN ls -l opt/mendix/buildpack
 
 # Add the buildpack modules
