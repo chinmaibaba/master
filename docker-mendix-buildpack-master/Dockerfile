@@ -55,7 +55,7 @@ COPY $BUILD_PATH /opt/mendix/build
 
 RUN ls -l
 RUN ls -l opt/mendix/buildpack
-RUN ls -l opt/mendix/buildpack/cf-mendix-buildpack-main
+#RUN ls -l opt/mendix/buildpack/cf-mendix-buildpack-main
 
 
 
@@ -72,7 +72,7 @@ RUN chmod +rx /tmp/buildcache
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack
 # RUN chmod -R 777 /opt/mendix/buildpack/buildpack/stage.py
 RUN ls -l opt/mendix/buildpack/buildpack
-RUN cd /opt/mendix/buildpack/cf-mendix-buildpack-main
+#RUN cd /opt/mendix/buildpack/cf-mendix-buildpack-main
 RUN ls -l
 #WORKDIR /opt/mendix/buildpack
 #COPY opt/mendix/buildpack/cf-mendix-buildpack-main/* /opt/mendix/buildpack/
@@ -94,7 +94,7 @@ ENV NGINX_CUSTOM_BIN_PATH=/usr/sbin/nginx
 # 7. Update ownership of /opt/mendix so that the app can run as a non-root user
 # 8. Update permissions of /opt/mendix so that the app can run as a non-root user
 RUN mkdir -p /tmp/buildcache /var/mendix/build /var/mendix/build/.local &&\
-    chmod +rx /opt/mendix/buildpack/compilation /opt/mendix/buildpack/git /opt/mendix/buildpack/cf-mendix-buildpack-main/buildpack/stage.py &&\
+    chmod +rx /opt/mendix/buildpack/compilation /opt/mendix/buildpack/git /opt/mendix/buildpack/buildpack/stage.py &&\
     cd /opt/mendix/buildpack &&\
     ./compilation /opt/mendix/build /tmp/buildcache &&\
     rm -fr /tmp/buildcache /tmp/javasdk /tmp/opt /tmp/downloads /opt/mendix/buildpack/compilation /opt/mendix/buildpack/git &&\
