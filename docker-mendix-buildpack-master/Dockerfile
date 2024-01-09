@@ -127,7 +127,9 @@ RUN if [ "$UNINSTALL_BUILD_DEPENDENCIES" = "true" ] && grep -q ubuntu /etc/os-re
 ENV PYTHONPATH "/opt/mendix/buildpack/lib/:/opt/mendix/buildpack/:/opt/mendix/buildpack/lib/python3.6/site-packages/"
 
 # Copy start scripts
-COPY scripts/startup scripts/vcap_application.json /opt/mendix/build/
+COPY scripts/startup /opt/mendix/build/
+COPY scripts/vcap_application.json /opt/mendix/build/
+
 
 # Create vcap home directory for Datadog configuration
 RUN mkdir -p /home/vcap /opt/datadog-agent/run &&\
