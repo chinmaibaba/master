@@ -16,9 +16,8 @@ ARG DD_API_KEY
 ARG CF_BUILDPACK=v5.0.13
 # CF buildpack download URL
 ARG CF_BUILDPACK_URL=https://github.com/mendix/cf-mendix-buildpack/releases/download/${CF_BUILDPACK}/cf-mendix-buildpack.zip
+#ARG CF_BUILDPACK_URL=https://github.com/mendix/cf-mendix-buildpack/releases/download/${CF_BUILDPACK}/cf-mendix-buildpack.zip
 #ARG CF_BUILDPACK_URL=https://github.com/chinmaibaba/cf-mendix-buildpack/archive/refs/heads/main.zip
-#ARG CF_BUILDPACK_URL=https://github.com/chinmaibaba/buildpack/archive/refs/heads/main.zip
-
 
 # Exclude the logfilter binary by default
 ARG EXCLUDE_LOGFILTER=true
@@ -47,41 +46,13 @@ RUN mkdir -p /opt/mendix/buildpack /opt/mendix/build &&\
     chmod -R g=u /opt/mendix
 
 # Copy python scripts which execute the buildpack (exporting the VCAP variables)
-COPY scripts/compilation /opt/mendix/buildpack/
-COPY scripts/git /opt/mendix/buildpack/
+COPY scripts/compilation scripts/git /opt/mendix/buildpack/
 
 # Copy project model/sources
 COPY $BUILD_PATH /opt/mendix/build
 
-#RUN python3 -m pip show requests
-#RUN apt-get install pip
-RUN ls -l
-RUN ls -l opt/mendix/buildpack
-RUN ls -l usr/lib/
-RUN ls -l usr/lib/python3.6
-#RUN ls -l opt/mendix/buildpack/cf-mendix-buildpack-main
-RUN cd usr/lib/python3
-RUN python3 --version 
-RUN echo $PATH
-RUN which python3
-
-RUN ls -l /usr/bin/python3
-RUN /usr/bin/python3/python3 -m pip show requests
-
-
- 
 # Install the buildpack Python dependencies
-RUN chmod +rx  /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
-
-RUN chmod +rx /tmp/buildcache
-# RUN chmod -R 777 /opt/mendix/buildpack/buildpack
-# RUN chmod -R 777 /opt/mendix/buildpack/buildpack/stage.py
-RUN ls -l opt/mendix/buildpack/buildpack
-#RUN cd /opt/mendix/buildpack/cf-mendix-buildpack-main
-RUN ls -l
-#WORKDIR /opt/mendix/buildpack
-#COPY opt/mendix/buildpack/cf-mendix-buildpack-main/* /opt/mendix/buildpack/
-RUN ls -l opt/mendix/buildpack
+RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
 
 # Add the buildpack modules
 ENV PYTHONPATH "$PYTHONPATH:/opt/mendix/buildpack/lib/:/opt/mendix/buildpack/:/opt/mendix/buildpack/lib/python3.6/site-packages/"
@@ -104,8 +75,8 @@ RUN mkdir -p /tmp/buildcache /var/mendix/build /var/mendix/build/.local &&\
     ./compilation /opt/mendix/build /tmp/buildcache &&\
     rm -fr /tmp/buildcache /tmp/javasdk /tmp/opt /tmp/downloads /opt/mendix/buildpack/compilation /opt/mendix/buildpack/git &&\
     ln -s /opt/mendix/.java /opt/mendix/build &&\
-    chown -R  ${USER_UID}:0 /opt/mendix /var/mendix &&\
-    chmod -R  g=u /opt/mendix /var/mendix
+    chown -R ${USER_UID}:0 /opt/mendix /var/mendix &&\
+    chmod -R g=u /opt/mendix /var/mendix
 
 FROM ${ROOTFS_IMAGE}
 LABEL Author="Mendix Digital Ecosystems"
@@ -133,9 +104,7 @@ RUN if [ "$UNINSTALL_BUILD_DEPENDENCIES" = "true" ] && grep -q ubuntu /etc/os-re
 ENV PYTHONPATH "/opt/mendix/buildpack/lib/:/opt/mendix/buildpack/:/opt/mendix/buildpack/lib/python3.6/site-packages/"
 
 # Copy start scripts
-COPY scripts/startup /opt/mendix/build/
-COPY scripts/vcap_application.json /opt/mendix/build/
-
+COPY scripts/startup scripts/vcap_application.json /opt/mendix/build/
 
 # Create vcap home directory for Datadog configuration
 RUN mkdir -p /home/vcap /opt/datadog-agent/run &&\
