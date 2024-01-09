@@ -53,7 +53,7 @@ COPY scripts/git /opt/mendix/buildpack/
 # Copy project model/sources
 COPY $BUILD_PATH /opt/mendix/build
 
-RUN python3 -m pip show requests
+#RUN python3 -m pip show requests
 RUN ls -l
 RUN ls -l opt/mendix/buildpack
 #RUN ls -l opt/mendix/buildpack/cf-mendix-buildpack-main
