@@ -62,8 +62,11 @@ RUN ls -l usr/lib/python3.6
 #RUN ls -l opt/mendix/buildpack/cf-mendix-buildpack-main
 RUN cd usr/lib/python3
 RUN python3 --version 
-RUN echo $path
+RUN echo $PATH
 RUN which python3
+
+RUN ls -l /usr/bin/python3
+RUN /usr/bin/python3/python3 -m pip show requests
 
 
  
