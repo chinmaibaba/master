@@ -47,11 +47,12 @@ RUN mkdir -p /opt/mendix/buildpack /opt/mendix/build &&\
 
 # Copy python scripts which execute the buildpack (exporting the VCAP variables)
 COPY scripts/compilation scripts/git /opt/mendix/buildpack/
-
 # Copy project model/sources
 COPY $BUILD_PATH /opt/mendix/build
 # install pip3 and requests module
 RUN apt-get update && apt-get install -y python3-pip && pip3 install requests
+# install libpg-dev needed for psycopg2-binary module
+RUN apt-get install -y libpq-dev
 RUN pip3 install pyyaml jinja2 httplib2
 RUN pip3 install dataclasses backoff omegaconf distro psycopg2-binary
 # Install the buildpack Python dependencies
