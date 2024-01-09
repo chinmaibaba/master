@@ -50,6 +50,7 @@ COPY scripts/compilation scripts/git /opt/mendix/buildpack/
 
 # Copy project model/sources
 COPY $BUILD_PATH /opt/mendix/build
+# install pip3 and requests module
 RUN apt-get update && apt-get install -y python3-pip && pip3 install requests
 # Install the buildpack Python dependencies
 RUN chmod +rx /opt/mendix/buildpack/bin/bootstrap-python && /opt/mendix/buildpack/bin/bootstrap-python /opt/mendix/buildpack /tmp/buildcache
