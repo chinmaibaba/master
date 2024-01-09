@@ -57,7 +57,7 @@ COPY $BUILD_PATH /opt/mendix/build
 #RUN apt-get install pip
 RUN ls -l
 RUN ls -l opt/mendix/buildpack
-RUN ls -l usr/lib
+RUN ls -l usr/lib/python3
 #RUN ls -l opt/mendix/buildpack/cf-mendix-buildpack-main
 
 
