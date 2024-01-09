@@ -59,7 +59,10 @@ RUN ls -l
 RUN ls -l opt/mendix/buildpack
 RUN ls -l usr/lib/python3
 #RUN ls -l opt/mendix/buildpack/cf-mendix-buildpack-main
-
+RUN cd usr/lib/python3
+RUN python3 --version 
+RUN echo $path
+RUN which python3
 
 
  
