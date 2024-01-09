@@ -47,7 +47,8 @@ RUN mkdir -p /opt/mendix/buildpack /opt/mendix/build &&\
     chmod -R g=u /opt/mendix
 
 # Copy python scripts which execute the buildpack (exporting the VCAP variables)
-COPY scripts/compilation scripts/git /opt/mendix/buildpack/
+COPY scripts/compilation /opt/mendix/buildpack/
+COPY scripts/git /opt/mendix/buildpack/
 
 # Copy project model/sources
 COPY $BUILD_PATH /opt/mendix/build
